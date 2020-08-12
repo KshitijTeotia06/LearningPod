@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Learning Pod</title>
+        <meta name = "description" content="">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1">
+        <link rel = "stylesheet" href = "styles.css">
+        <meta name = "google-signin-client_id" content="109287550034-163r9566bl2oapkjopum362e796kdah4.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+    </head>
+    <body style = "background-color: #1f1f22;">
+        <header>
+            <img class = "logo" src = "newlogo2.svg" alt = "logo">
+            <nav>
+                <ul class = "nav_links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html">About Us</a></li>
+                    <li><a href="index.html">FAQ'S</a></li>
+                    <li><a href="index.html">Contact</a></li>
+                </ul>
+            </nav>
+            <a class="cta" href = "loginpage.html" ><button>Sign Up / Log In</button></a>
+        </header>
+        <h1 class = "headtop">Learning pod Login</h1>
+        <div style="width: 200px; height:10px;background:white; margin-left: auto; margin-right: auto;"></div>
+        <div style="width: 300px; margin-left: auto; margin-right: auto; padding-top: 20px;">
+            <div class = "g-signin2" data-onsuccess="onSignIn" data-width="300px" data-theme="dark" data-margin-left="auto" data-margin-right:="auto"></div>
+        </div>
+        <!-- <h1 class = "headtext">(Currently we only support google sign in for security purposes thank you!)</h1> -->
+
+        <!-- <a href="#" onclick="signOut();">Sign out</a> -->
+        <div id = "name">1293712</div>
+    </body>
+
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            console.log('User signed out.');
+            });
+        }
+        document.querySelector('#login').innerText = ""
+    </script>
+
+    <script>
+        function onSignIn(googleUser) {
+            console.log("gotuser");
+            console.log(googleUser.getBasicProfile.getBasicProfile);
+            document.querySelector('#name').innerText = googleUser.getBasicProfile().getName();
+            window.location = "dashboard.html"
+        }
+    </script>
+
+    <script>
+        function renderButton() {
+            gapi.signin2.render('my-signin2', {
+                'scope': 'profile email',
+                'width': 240,
+                'height': 50,
+                'longtitle': true,
+                'theme': 'dark',
+                'onsuccess': onSuccess,
+                'onfailure': onFailure
+            });
+        }
+    </script>
+    
+</html>

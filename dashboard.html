@@ -12,6 +12,32 @@
     </head>
     <body style = "background-color: #1f1f22;">
         <h1 class = "headtop"> DASHBOARD </h1>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
+
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyAIp39HseHW9TVYGxT6cSOnu8fHuvRxlMQ",
+                authDomain: "learning-pod.firebaseapp.com",
+                databaseURL: "https://learning-pod.firebaseio.com",
+                projectId: "learning-pod",
+                storageBucket: "learning-pod.appspot.com",
+                messagingSenderId: "109287550034",
+                appId: "1:109287550034:web:61c4e5cdddc47c8ec0038b",
+                measurementId: "G-45LY71VZMZ"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+        </script>
+
+        <script src = "index.js"></script>
     </body>
 
 </html>

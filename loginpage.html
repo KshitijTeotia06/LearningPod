@@ -11,12 +11,37 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body style = "background-color: #1f1f22;">
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
+
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyAIp39HseHW9TVYGxT6cSOnu8fHuvRxlMQ",
+                authDomain: "learning-pod.firebaseapp.com",
+                databaseURL: "https://learning-pod.firebaseio.com",
+                projectId: "learning-pod",
+                storageBucket: "learning-pod.appspot.com",
+                messagingSenderId: "109287550034",
+                appId: "1:109287550034:web:61c4e5cdddc47c8ec0038b",
+                measurementId: "G-45LY71VZMZ"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+        </script>
+
         <header>
             <img class = "logo" src = "newlogo2.svg" alt = "logo">
             <nav>
                 <ul class = "nav_links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html">About Us</a></li>
+                    <li><a href="index.html">SCREWEDD</a></li>
                     <li><a href="index.html">FAQ'S</a></li>
                     <li><a href="index.html">Contact</a></li>
                 </ul>
@@ -25,12 +50,10 @@
         </header>
         <h1 class = "headtop">Learning pod Login</h1>
         <div style="width: 200px; height:10px;background:white; margin-left: auto; margin-right: auto;"></div>
+        <div>TEST DDIV</div>
         <div style="width: 300px; margin-left: auto; margin-right: auto; padding-top: 20px;">
             <div class = "g-signin2" data-onsuccess="onSignIn" data-width="300px" data-theme="dark" data-margin-left="auto" data-margin-right:="auto"></div>
         </div>
-        <!-- <h1 class = "headtext">(Currently we only support google sign in for security purposes thank you!)</h1> -->
-
-        <!-- <a href="#" onclick="signOut();">Sign out</a> -->
         <div id = "name">1293712</div>
     </body>
 
@@ -46,12 +69,13 @@
 
     <script>
         function onSignIn(googleUser) {
-            console.log("gotuser");
-            console.log(googleUser.getBasicProfile.getBasicProfile);
+            localStorage.setItem("uid", googleUser.getAuthResponse().id_token);
+            localStorage.setItem("name", googleUser.getBasicProfile().getName());
+            console.log(googleUser.getAuthResponse().id_token);
             document.querySelector('#name').innerText = googleUser.getBasicProfile().getName();
-            window.location = "dashboard.html"
+            window.location = "infoform.html"
         }
-    </script>
+    </script> 
 
     <script>
         function renderButton() {

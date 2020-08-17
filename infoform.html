@@ -9,6 +9,57 @@
         <link rel = "stylesheet" href = "styles.css">
     </head>
     <body style = "background-color: #1f1f22;">
+        <header>
+            <img class = "logo" src = "newlogo2.svg" alt = "logo">
+            <nav>
+                <ul class = "nav_links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html">About Us</a></li>
+                    <li><a href="index.html">FAQ'S</a></li>
+                    <li><a href="index.html">Contact</a></li>
+                </ul>
+            </nav>
+            <a class="cta" href = "loginpage.html" ><button>Sign Up / Log In</button></a>
+        </header>
         <h1 class = "headtop"> Plese Enter The Following Information </h1>
-        <form></form>
+
+        <div class = "headtop">
+            <h1 style="float: left;">Enter your grade : </h1>
+            <form style="padding-left: 700px">
+                <select name = "dropdown" id = "drop" style="padding-left: 10px; margin: auto; height: 100px; width: 135px; margin-left: auto; margin-right: auto; float: left;">
+                    <option value = "K" selected>K</option>
+                    <option value = "1">1</option>
+                    <option value = "2">2</option>
+                    <option value = "3">3</option>
+                    <option value = "4">4</option>
+                    <option value = "5">5</option>
+                    <option value = "6">6</option>
+                    <option value = "7">7</option>
+                    <option value = "8">8</option>
+                    <option value = "9">9</option>
+                    <option value = "10">10</option>
+                    <option value = "11">11</option>
+                    <option value = "12">12</option>
+                </select>
+            </form>
+        </div>
+        <div class = "headtop" style="padding-top: 250px;">
+            <h1 style="float: left;">Enter your school: </h1>
+            <form style="padding-left: 700px">
+                <input name = "dropdown" id = "enterin"style="padding-left: 10px; margin: auto; height: 100px; width: 135px; margin-left: auto; margin-right: auto; float: left;"></input>
+            </form>
+        </div>
+        <div style="padding-top: 250px; text-align: center">
+            <button type = "button" onclick="clickedFunc()">Submit</button>                
+            <script>
+                function clickedFunc(){
+                    var grade = document.getElementById("drop").value;
+                    var school = document.getElementById("enterin").value;
+                    school=  school.toUpperCase();
+                    console.log(grade);
+                    console.log(school);
+                    
+                }
+            </script>
+        </div>
     </body>

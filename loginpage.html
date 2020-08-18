@@ -36,6 +36,15 @@
             firebase.analytics();
         </script>
 
+        <script>
+            function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                console.log('User signed out.');
+                });
+            }
+        </script>
+
         <header>
             <img class = "logo" src = "newlogo2.svg" alt = "logo">
             <nav>
@@ -50,11 +59,9 @@
         </header>
         <h1 class = "headtop">Learning pod Login</h1>
         <div style="width: 200px; height:10px;background:white; margin-left: auto; margin-right: auto;"></div>
-        <div>TEST DDIV</div>
         <div style="width: 300px; margin-left: auto; margin-right: auto; padding-top: 20px;">
             <div class = "g-signin2" data-onsuccess="onSignIn" data-width="300px" data-theme="dark" data-margin-left="auto" data-margin-right:="auto"></div>
         </div>
-        <div id = "name">1293712</div>
     </body>
 
     <script>
@@ -64,25 +71,24 @@
             console.log('User signed out.');
             });
         }
-        document.querySelector('#login').innerText = ""
     </script>
 
     <script>
         function onSignIn(googleUser) {
             var gotuid =  googleUser.getBasicProfile().getId();
+            var name = googleUser.getBasicProfile().getName()
             localStorage.setItem("uid", gotuid);
-            localStorage.setItem("name", googleUser.getBasicProfile().getName());
+            localStorage.setItem("name", name);
             console.log(gotuid);
-            document.querySelector('#name').innerText = googleUser.getBasicProfile().getName();
-            var ref = firebase.database().ref("Schools/" + gotuid);
-            firebase.database().ref("Name/" + gotuid).set("KSHITIJ TEOTIA");
-            console.log("NAME".concat(gotuid));
+            var ref = firebase.database().ref(gotuid);
+            gapi.auth2.getAuthInstance().signOut();
             ref.once("value")
                 .then(function(snapshot) {
                     var a = snapshot.exists();  
                     if(a){
                         window.location = "dashboard.html";
                     }else{
+                        firebase.database().ref(gotuid + "/name").set(name);
                         window.location = "infoform.html";
                     }
                 });

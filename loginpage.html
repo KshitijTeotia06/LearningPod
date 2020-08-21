@@ -18,24 +18,8 @@
             https://firebase.google.com/docs/web/setup#available-libraries -->
         <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
-
-        <script>
-            // Your web app's Firebase configuration
-            var firebaseConfig = {
-                apiKey: "AIzaSyAIp39HseHW9TVYGxT6cSOnu8fHuvRxlMQ",
-                authDomain: "learning-pod.firebaseapp.com",
-                databaseURL: "https://learning-pod.firebaseio.com",
-                projectId: "learning-pod",
-                storageBucket: "learning-pod.appspot.com",
-                messagingSenderId: "109287550034",
-                appId: "1:109287550034:web:61c4e5cdddc47c8ec0038b",
-                measurementId: "G-45LY71VZMZ"
-            };
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-            firebase.analytics();
-        </script>
-
+        <script src = "firebaseConfig.js"></script>
+        <script src = "index.js"></script>
         <script>
             function signOut() {
                 var auth2 = gapi.auth2.getAuthInstance();
@@ -44,7 +28,6 @@
                 });
             }
         </script>
-
         <header>
             <img class = "logo" src = "newlogo2.svg" alt = "logo">
             <nav>
@@ -63,7 +46,6 @@
             <div class = "g-signin2" data-onsuccess="onSignIn" data-width="300px" data-theme="dark" data-margin-left="auto" data-margin-right:="auto"></div>
         </div>
     </body>
-
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
@@ -72,42 +54,4 @@
             });
         }
     </script>
-
-    <script>
-        function onSignIn(googleUser) {
-            var gotuid =  googleUser.getBasicProfile().getId();
-            var name = googleUser.getBasicProfile().getName()
-            localStorage.setItem("uid", gotuid);
-            localStorage.setItem("name", name);
-            console.log(gotuid);
-            var ref = firebase.database().ref(gotuid);
-            gapi.auth2.getAuthInstance().signOut();
-            ref.once("value")
-                .then(function(snapshot) {
-                    var a = snapshot.exists();  
-                    if(a){
-                        window.location = "dashboard.html";
-                    }else{
-                        firebase.database().ref(gotuid + "/name").set(name);
-                        window.location = "infoform.html";
-                    }
-                });
-
-        }
-    </script> 
-
-    <script>
-        function renderButton() {
-            gapi.signin2.render('my-signin2', {
-                'scope': 'profile email',
-                'width': 240,
-                'height': 50,
-                'longtitle': true,
-                'theme': 'dark',
-                'onsuccess': onSuccess,
-                'onfailure': onFailure
-            });
-        }
-    </script>
-    
 </html>

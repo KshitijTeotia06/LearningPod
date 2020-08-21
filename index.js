@@ -9,11 +9,19 @@ function onSignIn(googleUser) {
     ref.once("value")
         .then(function(snapshot) {
             var a = snapshot.exists();  
-            if(a){
-                window.location = "dashboard.html";
-            }else{
+            if(!a){
                 firebase.database().ref(gotuid + "/name").set(name);
                 window.location = "infoform.html";
+            }
+        });
+    var lobref = firebase.database().ref(gotuid + "/lobby");
+    lobref.once("value")
+        .then(function(snapshot) {
+            var a = snapshot.exists();  
+            if(a){
+               window.location = "displaypod.html"; 
+            }else{
+                window.location = "dashboard.html";
             }
         });
 }
@@ -48,9 +56,12 @@ function moveToInPerson(){
 function clickedFunc(){
     var grade = document.getElementById("drop").value;
     var school = document.getElementById("enterin").value;
+    var email = document.getElementById("getemail").value;
     console.log("REACHED");
     firebase.database().ref(localStorage.getItem("uid") + "/school").set(school);
     firebase.database().ref(localStorage.getItem("uid") + "/grade").set(grade);
+    firebase.database().ref(localStorage.getItem("uid") + "/email").set(email);
+    firebase.database()
     firebase.database().ref(localStorage.getItem("uid") + "/grade").set(grade, function(error){
         window.location = "dashboard.html";
     });
@@ -59,11 +70,20 @@ function clickedFunc(){
 
 function createPod(){
     console.log("CREATE POD BUTTON CLICKED");
-    firebase.database().ref("Lobby").push({
+    var ref = firebase.database().ref("Lobby").push({
         Host: localStorage.getItem("uid")
+    });
+    firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(ref.key);
+    firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(ref.key, function(error){
+        window.location = "displaypod.html"
+        return;
     });
 }
 
 function joinPod(){
     console.log("JOIN POD BUTTON CLICKED")
+}
+
+function editInfo(){
+    window.location = "infoform.html";
 }

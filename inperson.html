@@ -50,17 +50,19 @@
         </script>
 
         <div style = "text-align: center;">
-            <button style="margin-right: 10px;" onclick="moveToVirtual()">Virtual</button>
-            <button onclick="moveToInPerson()">In Person</button>
+            <button style="margin-right: 10px;" onclick="createPod()">Create A Learning Pod</button>
+            <button onclick="joinPod()">Join A Learning Pod</button>
         </div>
 
         <script>
-            function moveToVirtual(){
-                window.location = "virtual.html"
+            function createPod(){
+                console.log("CREATE POD BUTTON CLICKED");
+                firebase.database().ref("Lobby").push({
+                    Host: localStorage.getItem("uid")
+                });
             }
-
-            function moveToInPerson(){
-                window.location = "inperson.html";
+            function joinPod(){
+                console.log("JOIN POD BUTTON CLICKED")
             }
             
         </script>

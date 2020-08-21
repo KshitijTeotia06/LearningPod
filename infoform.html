@@ -95,6 +95,10 @@
             console.log("REACHED");
             firebase.database().ref(localStorage.getItem("uid") + "/school").set(school);
             firebase.database().ref(localStorage.getItem("uid") + "/grade").set(grade);
+            firebase.database().ref(localStorage.getItem("uid") + "/grade").set(grade, function(error){
+                console.log("GOT HERE BOIS");
+                window.location = "dashboard.html";
+            });
             // window.location = "dashboard.html";
         }
     </script>
@@ -125,7 +129,7 @@
                     }else{
                         firebase.database().ref(gotuid + "/name").set(name);
                         // firebase.database().ref(gotuid + "/othername").set("PABLO");
-                        window.location = "infoform.html";
+                        // window.location = "infoform.html";
                     }
                 });
         }

@@ -1,4 +1,4 @@
-firebase.database().ref("Lobby/" ).on('value', function(snap){
+firebase.database().ref("VLobby/" ).on('value', function(snap){
     console.log(snap.val());
     console.log(snap.numChildren());
 });
@@ -7,7 +7,7 @@ var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[
 
 firebase.database().ref(localStorage.getItem("uid")).once('value', function(snap){
     var data = snap.val();
-    firebase.database().ref("Lobby/" + data["lobby"]).on('value', function(snap2){
+    firebase.database().ref("VLobby/" + data["lobby"]).on('value', function(snap2){
 
         var table = document.getElementById('myTable');
         for(var i = table.rows.length - 1; i > 0; i--)

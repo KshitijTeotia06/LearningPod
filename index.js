@@ -68,9 +68,9 @@ function clickedFunc(){
     // window.location = "dashboard.html";
 }
 
-function createPod(){
+function createVPod(){
     console.log("CREATE POD BUTTON CLICKED");
-    var ref = firebase.database().ref("Lobby").push({
+    var ref = firebase.database().ref("VLobby").push({
         Host: localStorage.getItem("uid")
     });
     firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(ref.key);
@@ -80,8 +80,46 @@ function createPod(){
     });
 }
 
+function joinVPod(){
+    firebase.database().ref("VLobby/").once('value', function(snap){
+        var data = snap.val();
+        var keys = Object.keys(data);
+        if(keys.length == 0){
+            createVPod();
+            return;
+        }
+        var grade;
+        var completed = false;
+        firebase.database().ref(localStorage.getItem("uid") + "/grade").once('value', function(snap2){
+            grade = snap2.val();
+            for(var i = 0; i < keys.length; i++){
+                var k = keys[i];
+                firebase.database().ref("VLobby/" + k + "/Host").once('value', function(snap3){
+                    var get = snap3.val();
+                    firebase.database().ref(get + "/grade").once('value', function(snap4){
+                        var get2 = snap4.val();
+                        if(get2 == grade){
+                            console.log("same");
+                            var id = localStorage.getItem("uid");
+                            firebase.database().ref(id + "/lobby").set(k);
+                            var ref = firebase.database().ref("VLobby/" + k).push(
+                                localStorage.getItem("uid")
+                            );
+                            firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(k, function(error){
+                                window.location = "displaypod.html";
+                                return;
+                            });
+                        }
+                    });
+                });
+            }
+        });
+    });
+    // createVPod();
+}
+
 function joinPod(){
-    console.log("JOIN POD BUTTON CLICKED")
+    
 }
 
 function editInfo(){

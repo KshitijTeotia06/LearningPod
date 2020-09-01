@@ -1,3 +1,6 @@
+
+var haslobby = false;
+
 function onSignIn(googleUser) {
     var gotuid =  googleUser.getBasicProfile().getId();
     var name = googleUser.getBasicProfile().getName()
@@ -68,53 +71,74 @@ function clickedFunc(){
     // window.location = "dashboard.html";
 }
 
+
 function createVPod(){
-    console.log("CREATE POD BUTTON CLICKED");
-    var ref = firebase.database().ref("VLobby").push({
-        Host: localStorage.getItem("uid")
-    });
-    firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(ref.key);
-    firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(ref.key, function(error){
-        window.location = "displaypod.html"
-        return;
-    });
+    var ref = firebase.database().ref(localStorage.getItem("uid") + "/lobby");
+    ref.once("value")
+        .then(function(snapshot) {
+            var a = snapshot.exists();  
+            if(a){
+                console.log("Got Here") 
+                window.location = "displaypod.html";
+            }else{
+                var ref = firebase.database().ref("VLobby").push({
+                    Host: localStorage.getItem("uid")
+                });
+                firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(ref.key);
+                firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(ref.key, function(error){
+                    window.location = "displaypod.html"
+                    return;
+                });
+            }
+        });
 }
 
 function joinVPod(){
-    firebase.database().ref("VLobby/").once('value', function(snap){
-        var data = snap.val();
-        var keys = Object.keys(data);
-        if(keys.length == 0){
-            createVPod();
-            return;
-        }
-        var grade;
-        var completed = false;
-        firebase.database().ref(localStorage.getItem("uid") + "/grade").once('value', function(snap2){
-            grade = snap2.val();
-            for(var i = 0; i < keys.length; i++){
-                var k = keys[i];
-                firebase.database().ref("VLobby/" + k + "/Host").once('value', function(snap3){
-                    var get = snap3.val();
-                    firebase.database().ref(get + "/grade").once('value', function(snap4){
-                        var get2 = snap4.val();
-                        if(get2 == grade){
-                            console.log("same");
-                            var id = localStorage.getItem("uid");
-                            firebase.database().ref(id + "/lobby").set(k);
-                            var ref = firebase.database().ref("VLobby/" + k).push(
-                                localStorage.getItem("uid")
-                            );
-                            firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(k, function(error){
-                                window.location = "displaypod.html";
-                                return;
+
+    var ref = firebase.database().ref(localStorage.getItem("uid") + "/lobby");
+    ref.once("value")
+        .then(function(snapshot) {
+            var a = snapshot.exists();  
+            if(a){
+                console.log("Got Here") 
+                window.location = "displaypod.html";
+            }else{
+                firebase.database().ref("VLobby/").once('value', function(snap){
+                    var data = snap.val();
+                    var keys = Object.keys(data);
+                    if(keys.length == 0){
+                        createVPod();
+                        return;
+                    }
+                    var grade;
+                    var completed = false;
+                    firebase.database().ref(localStorage.getItem("uid") + "/grade").once('value', function(snap2){
+                        grade = snap2.val();
+                        for(var i = 0; i < keys.length; i++){
+                            var k = keys[i];
+                            firebase.database().ref("VLobby/" + k + "/Host").once('value', function(snap3){
+                                var get = snap3.val();
+                                firebase.database().ref(get + "/grade").once('value', function(snap4){
+                                    var get2 = snap4.val();
+                                    if(get2 == grade){
+                                        console.log("same");
+                                        var id = localStorage.getItem("uid");
+                                        firebase.database().ref(id + "/lobby").set(k);
+                                        var ref = firebase.database().ref("VLobby/" + k).push(
+                                            localStorage.getItem("uid")
+                                        );
+                                        firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(k, function(error){
+                                            window.location = "displaypod.html";
+                                            return;
+                                        });
+                                    }
+                                });
                             });
                         }
                     });
                 });
             }
         });
-    });
     // createVPod();
 }
 

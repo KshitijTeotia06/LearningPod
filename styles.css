@@ -1,14 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 
-
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     /* background-color: #1f1f22; */
 }
 
-li, a, button{
+li,
+a,
+button {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -16,18 +17,18 @@ li, a, button{
     text-decoration: none;
 }
 
-header{
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 30px 5%;
 }
 
-.logo{
+.logo {
     cursor: pointer;
 }
 
-.nav_links{
+.nav_links {
     list-style: none;
 }
 
@@ -36,15 +37,15 @@ header{
     padding: 0px 10px;
 }
 
-.nav_links li a{
+.nav_links li a {
     transition: all 0.3s ease 0s;
 }
 
-.nav_links li a:hover{
-    color: white
+.nav_links li a:hover {
+    color: white;
 }
 
-button{
+button {
     padding: 9px 25px;
     background-color: rgba(0, 131, 169, 1);
     border-radius: 50px;
@@ -52,11 +53,11 @@ button{
     transition: all 0.3s ease 0s;
 }
 
-button:hover{
+button:hover {
     background-color: rgba(200, 200, 200, 0.8);
 }
 
-.headtop{
+.headtop {
     padding-top: 50px;
     padding-bottom: 10px;
     padding-left: 5%;
@@ -69,7 +70,7 @@ button:hover{
     text-align: center;
 }
 
-.headtext{
+.headtext {
     padding-left: 10%;
     padding-right: 10%;
     padding-bottom: 50px;
@@ -82,7 +83,7 @@ button:hover{
     text-decoration: rgba(0, 131, 169, 1);
     text-align: center;
 }
-.whowe{
+.whowe {
     background: rgba(0, 131, 169, 1) !important;
 }
 .table {
@@ -90,10 +91,10 @@ button:hover{
     border-width: 150px;
     border-color: #8ebf42;
     background-color: #d9d9d9;
-  }
+}
 .th {
-border: 5px solid #095484;
+    border: 5px solid #095484;
 }
 .td {
-border: 20px groove #1c87c9;
+    border: 20px groove #1c87c9;
 }

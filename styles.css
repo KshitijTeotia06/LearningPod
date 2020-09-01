@@ -83,6 +83,18 @@ button:hover {
     text-decoration: rgba(0, 131, 169, 1);
     text-align: center;
 }
+
+.footer-text {
+    padding-left: 10%;
+    padding-right: 10%;
+    text-overflow: initial;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    text-decoration: rgba(0, 131, 169, 1);
+    text-align: center;
+}
 .whowe {
     background: rgba(0, 131, 169, 1) !important;
 }
@@ -97,4 +109,16 @@ button:hover {
 }
 .td {
     border: 20px groove #1c87c9;
+}
+
+#footer_right {
+    text-align: center;
+    font-size: 20px;
+    padding-left: 10px;
+    text-align: center;
+    padding-bottom: 60px;
+}
+
+#contact {
+    border-bottom: 2px solid black;
 }

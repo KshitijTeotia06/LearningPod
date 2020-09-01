@@ -122,3 +122,9 @@ button:hover {
 #contact {
     border-bottom: 2px solid black;
 }
+
+#credits {
+    text-align: center;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}

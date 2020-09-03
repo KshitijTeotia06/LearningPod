@@ -7,11 +7,8 @@
     /* background-color: #1f1f22; */
 }
 
-li{
-    color: #0c008b;
-}
 
-a,
+li, a,
 button {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;

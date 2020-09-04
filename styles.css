@@ -260,7 +260,7 @@ button:hover {
 }
 
 .background {
-    background-color: #86c5da;
+    /* background-color: #86c5da; */
 }
 .faqs {
     background-color: #86c5da;
@@ -268,7 +268,6 @@ button:hover {
 .whatare_1 {
     padding-left: 4%;
     line-height: 2;
-    background-color: #151b54;
     width: 65%;
     height: 30%;
     float: left;
@@ -291,7 +290,6 @@ button:hover {
     font-family: "Montserrat", sans-serif;
 }
 #box_7 {
-    background-color: #151B54;
     width: 75%;
     height: 50%;
     float: right;

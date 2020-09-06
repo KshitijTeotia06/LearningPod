@@ -124,9 +124,7 @@ function joinVPod(){
                                         console.log("same");
                                         var id = localStorage.getItem("uid");
                                         firebase.database().ref(id + "/lobby").set(k);
-                                        var ref = firebase.database().ref("VLobby/" + k).push(
-                                            localStorage.getItem("uid")
-                                        );
+                                        firebase.database().ref("VLobby/" + k + "/" + localStorage.getItem("uid")).set(localStorage.getItem("uid"));
                                         firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(k, function(error){
                                             window.location = "displaypod.html";
                                             return;
@@ -148,4 +146,8 @@ function joinPod(){
 
 function editInfo(){
     window.location = "infoform.html";
+}
+
+function leavePod(){
+    firebase.database().ref("VLobby/" + firebase.database().get(localStorage.getItem("uid") + "/lobby"))
 }

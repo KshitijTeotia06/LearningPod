@@ -230,5 +230,6 @@ function editInfo(){
 }
 
 function leavePod(){
-    firebase.database().ref("VLobby/" + firebase.database().get(localStorage.getItem("uid") + "/lobby"))
+    firebase.database().ref("VLobby/" + firebase.database().get(localStorage.getItem("uid") + "/lobby"));
+    window.location.href = "./displaypod.html";
 }

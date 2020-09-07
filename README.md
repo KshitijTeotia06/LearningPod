@@ -1,5 +1,5 @@
 # LearningPod
-Repository for a learning pods website. Developed by Kshitij Teotia, Abhinav Mukherjee, Vineet Rao, Vishnu Potharaju
+Repository for a learning pods website. Developed by Vineet Rao, Kshitij Teotia, Abhinav Mukherjee, and Vishnu Potharaju
 
 # What are Learning Pods?
 

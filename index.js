@@ -145,7 +145,62 @@ function joinVPod(){
     // createVPod();
 }
 
+function getData(id) {
+    return firebase.database().ref(id).once('value').then(function(snapshot) {
+      return snapshot.val();
+    });
+  }
+
+
 function joinPod(){
+    var ref = firebase.database().ref(localStorage.getItem("uid") + "/lobby");
+    ref.once("value")
+        .then(function(snapshot) {
+            var a = snapshot.exists();  
+            if(a){
+                console.log("Got Here") 
+                window.location = "displaypodInPerson.html";
+            }else{
+                firebase.database().ref("Lobby/").once('value', function(snap){
+                    var data = snap.val();
+                    var keys = Object.keys(data);
+                    if(keys.length == 0){
+                        createVPod();
+                        return;
+                    }
+                    var grade;
+                    var completed = false;
+                    var min = 1000000;
+                    var key;
+                    var count = 0
+                    firebase.database().ref(localStorage.getItem("uid") + "/zip").once('value', function(snap2){
+                        grade = snap2.val();
+                        for(var i = 0; i < keys.length; i++){
+                            var k = keys[i];
+                            var hostid = getData("Lobby/" + k + "/Host");
+                            hostid.then(function(result) {
+                                var hostzip = getData(result + "/zip");
+                                hostzip.then(function(result2){
+                                    count++;
+                                    var num = parseInt(result2);
+                                    if(Math.abs(num - grade) < min){
+                                        key = keys[count-1];
+                                        min = Math.abs(num - grade);
+                                    }
+                                    var id = localStorage.getItem("uid");
+                                        firebase.database().ref(id + "/lobby").set(key);
+                                        firebase.database().ref("Lobby/" + key + "/" + localStorage.getItem("uid")).set(localStorage.getItem("uid"));
+                                        firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(key, function(error){
+                                            window.location = "displaypodInPerson.html";
+                                            return;
+                                        });
+                                })
+                            });
+                        }
+                    });
+                });
+            }
+        });
 
 }
 

@@ -1,7 +1,7 @@
 # LearningPod
-Repository for a learning pods website. 
+Repository for a learning pods website. Developed by Vineet Rao, Vishnu Potharaju, Kshitij Teotia, and Abhinav Mukherjee
 
-# Developed by Vineet Rao, Vishnu Potharaju, Kshitij Teotia, and Abhinav Mukherjee
+# What are Learning Pods?
 
 Learning pods is a Kumar for Congress program designed to give students an in-person learning experience through the pandemic. The website and project is led and designed by high school students, who are interns of the Congressional Candidate Rishi Kumar.
 

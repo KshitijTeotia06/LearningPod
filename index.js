@@ -231,5 +231,5 @@ function editInfo(){
 
 function leavePod(){
     firebase.database().ref("VLobby/" + firebase.database().get(localStorage.getItem("uid") + "/lobby"));
-    window.location.href = "./displaypod.html";
+    window.location.replace("http://mywebsite.com/home.html");
 }

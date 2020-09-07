@@ -22,7 +22,11 @@ function onSignIn(googleUser) {
         .then(function(snapshot) {
             var a = snapshot.exists();  
             if(a){
-               window.location = "displaypod.html"; 
+                // firebase.database().ref(gotuid + "/lobby").once('value', function(snap){
+                //     var ref = firebase.database().ref("VLobby/"+snap.val());
+                //     ref.once("value")
+                // });
+                window.location = "displaypod.html";
             }else{
                 window.location = "dashboard.html";
             }
@@ -60,10 +64,12 @@ function clickedFunc(){
     var grade = document.getElementById("drop").value;
     var school = document.getElementById("enterin").value;
     var email = document.getElementById("getemail").value;
+    var zip = document.getElementById("getzip").value;
     console.log("REACHED");
     firebase.database().ref(localStorage.getItem("uid") + "/school").set(school);
     firebase.database().ref(localStorage.getItem("uid") + "/grade").set(grade);
     firebase.database().ref(localStorage.getItem("uid") + "/email").set(email);
+    firebase.database().ref(localStorage.getItem("uid") + "/zip").set(zip);
     firebase.database()
     firebase.database().ref(localStorage.getItem("uid") + "/grade").set(grade, function(error){
         window.location = "dashboard.html";
@@ -94,7 +100,6 @@ function createVPod(){
 }
 
 function joinVPod(){
-
     var ref = firebase.database().ref(localStorage.getItem("uid") + "/lobby");
     ref.once("value")
         .then(function(snapshot) {
@@ -141,7 +146,28 @@ function joinVPod(){
 }
 
 function joinPod(){
-    
+
+}
+
+function createPod(){
+    var ref = firebase.database().ref(localStorage.getItem("uid") + "/lobby");
+    ref.once("value")
+        .then(function(snapshot) {
+            var a = snapshot.exists();  
+            if(a){
+                console.log("Got Here") 
+                window.location = "displaypodInPerson.html";
+            }else{
+                var ref = firebase.database().ref("Lobby").push({
+                    Host: localStorage.getItem("uid")
+                });
+                firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(ref.key);
+                firebase.database().ref(localStorage.getItem("uid") + "/lobby").set(ref.key, function(error){
+                    window.location = "displaypodInPerson.html"
+                    return;
+                });
+            }
+        });
 }
 
 function editInfo(){

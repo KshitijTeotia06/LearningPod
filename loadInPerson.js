@@ -1,16 +1,13 @@
-firebase.database().ref("VLobby/" ).on('value', function(snap){
+firebase.database().ref("Lobby/" ).on('value', function(snap){
     console.log(snap.val());
     console.log(snap.numChildren());
-    if(snap.numChildren() == 0){
-        window.location="displaypodInPerson.html";
-    }
 });
 
 var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
 
 firebase.database().ref(localStorage.getItem("uid")).once('value', function(snap){
     var data = snap.val();
-    firebase.database().ref("VLobby/" + data["lobby"]).on('value', function(snap2){
+    firebase.database().ref("Lobby/" + data["lobby"]).on('value', function(snap2){
 
         var table = document.getElementById('myTable');
         for(var i = table.rows.length - 1; i > 0; i--)
@@ -35,7 +32,6 @@ firebase.database().ref(localStorage.getItem("uid")).once('value', function(snap
                 // Append a text node to the cell
                 var newText  = document.createTextNode(getall["name"]);
                 newCell.appendChild(newText);
-
                 var newCell2 = newRow.insertCell(1);
                 var newText2 = document.createTextNode(getall["school"]);
                 newCell2.append(newText2);

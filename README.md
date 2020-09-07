@@ -1,5 +1,5 @@
 # LearningPod
-Repository for a learning pods website. Developed by Vineet Rao, Vishnu Potharaju, Kshitij Teotia, and Abhinav Mukherjee.
+Repository for a learning pods website. Developed by Kshitij Teotia, Abhinav Mukherjee, Vineet Rao, Vishnu Potharaju
 
 # What are Learning Pods?
 
@@ -7,3 +7,4 @@ Learning pods is a Kumar for Congress program designed to give students an in-pe
 
 This project is sponsored by Rishi Kumar, a Congressional Candidate aiming to help our community during this pandemic. Kumar is a Saratoga Councilmember running for Congressman of CA-D18 this year. Kumar sponsored and started this project to help empower youth and give them a new, in-person learning opportunity during the pandemic.
 
+We wish to give back to the community and help out with our community's needs. This was one of the way's we could think of.
